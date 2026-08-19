@@ -31,7 +31,6 @@ yarn-error.log*
 *.pem
 Thumbs.db
 
-# internal draft phase notes
-/docs/p0.md
-/docs/p1.md
-/docs/p6.md
+# internal draft notes & docs
+/docs/
+TECHNICAL_ARCHITECTURE.md
