@@ -60,13 +60,13 @@ export function HeroSection({ onOpenAuthModal }: HeroSectionProps) {
                                     </span>
                                     <span className="block h-4 w-[1px] bg-border"></span>
 
-                                    <div className="bg-primary text-primary-foreground group-hover:bg-primary/90 size-6 overflow-hidden rounded-full duration-500 flex items-center justify-center">
-                                        <div className="flex w-12 -translate-x-1/2 duration-500 ease-in-out group-hover:translate-x-0">
-                                            <span className="flex size-6 items-center justify-center">
-                                                <ArrowRight className="m-auto size-3" />
+                                    <div className="bg-primary text-primary-foreground group-hover:bg-primary/90 size-6 overflow-hidden rounded-full duration-500 flex items-center justify-center shrink-0">
+                                        <div className="flex w-12 translate-x-0 duration-500 ease-in-out group-hover:-translate-x-6">
+                                            <span className="flex size-6 items-center justify-center shrink-0">
+                                                <ArrowRight className="m-auto w-3.5 h-3.5" />
                                             </span>
-                                            <span className="flex size-6 items-center justify-center">
-                                                <ArrowRight className="m-auto size-3" />
+                                            <span className="flex size-6 items-center justify-center shrink-0">
+                                                <ArrowRight className="m-auto w-3.5 h-3.5" />
                                             </span>
                                         </div>
                                     </div>
