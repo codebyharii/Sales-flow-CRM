@@ -60,15 +60,13 @@ export function HeroSection({ onOpenAuthModal }: HeroSectionProps) {
                                     </span>
                                     <span className="block h-4 w-[1px] bg-border"></span>
 
-                                    <div className="bg-primary text-primary-foreground group-hover:bg-primary/90 size-6 overflow-hidden rounded-full duration-500 flex items-center justify-center shrink-0">
-                                        <div className="flex w-12 translate-x-0 duration-500 ease-in-out group-hover:-translate-x-6">
-                                            <span className="flex size-6 items-center justify-center shrink-0">
-                                                <ArrowRight className="m-auto w-3.5 h-3.5" />
-                                            </span>
-                                            <span className="flex size-6 items-center justify-center shrink-0">
-                                                <ArrowRight className="m-auto w-3.5 h-3.5" />
-                                            </span>
-                                        </div>
+                                    {/* Arrow Circle Badge with Left-to-Right Marquee Animation */}
+                                    <div className="bg-primary text-primary-foreground group-hover:bg-primary/90 size-6 overflow-hidden rounded-full relative flex items-center justify-center shrink-0">
+                                        {/* Default Arrow: Starts in Center, moves RIGHT on hover */}
+                                        <ArrowRight className="absolute w-3.5 h-3.5 transition-all duration-300 ease-in-out translate-x-0 group-hover:translate-x-6 opacity-100 group-hover:opacity-0" />
+                                        
+                                        {/* Hover Arrow: Starts on LEFT, enters CENTER on hover */}
+                                        <ArrowRight className="absolute w-3.5 h-3.5 transition-all duration-300 ease-in-out -translate-x-6 group-hover:translate-x-0 opacity-0 group-hover:opacity-100" />
                                     </div>
                                 </div>
 
