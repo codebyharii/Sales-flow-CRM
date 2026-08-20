@@ -17,7 +17,7 @@ export function Navbar({ onOpenAuthModal }: NavbarProps) {
       onClick: () => window.scrollTo({ top: 0, behavior: "smooth" }),
     },
     {
-      name: "Login / Book Meeting",
+      name: "Book Meeting",
       url: "#",
       icon: LogIn,
       onClick: () => {
