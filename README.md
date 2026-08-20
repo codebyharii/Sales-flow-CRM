@@ -2,7 +2,7 @@
 
 > **Live Deployment:** https://xatom.in/ *(Deploy via GitHub)*  
 > **PRD Design Version:** 3.0 (Full-Stack Next.js 14 App Router + Auth.js v5 + Prisma SQLite/PostgreSQL)  
-> **Design Specification Spec:** [`docs/design.md`](file:///e:/Book%20sales/docs/design.md)
+
 
 ---
 
