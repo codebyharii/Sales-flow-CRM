@@ -1,10 +1,10 @@
 "use client";
 
 import * as React from "react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
-import { X, Mail, Lock, User, Loader2, AlertCircle } from "lucide-react";
+import { X, Mail, Lock, User, Loader2, AlertCircle, Eye, EyeOff } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import {
   Drawer,
@@ -18,7 +18,6 @@ import {
   AnimatedTabs,
   AnimatedTabsList,
   AnimatedTabsTrigger,
-  AnimatedTabsContent,
   useMeasure,
 } from "@/components/ui/family-signin-drawer-utils/tabs";
 
@@ -48,6 +47,7 @@ export function SignInDrawer({
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   // Status & Error
   const [status, setStatus] = useState<"default" | "submitting" | "error" | "success">("default");
@@ -59,6 +59,7 @@ export function SignInDrawer({
       setStatus("default");
       setErrorMessage(null);
       setStep("form");
+      setShowPassword(false);
     }
   }, [open, initialTab]);
 
@@ -68,6 +69,7 @@ export function SignInDrawer({
         setStep("form");
         setStatus("default");
         setErrorMessage(null);
+        setShowPassword(false);
       }, 300);
       if (externalOnClose) externalOnClose();
     }
@@ -235,7 +237,7 @@ export function SignInDrawer({
                         </div>
                       </div>
 
-                      {/* Password Field */}
+                      {/* Password Field with Eye Show/Hide Toggle */}
                       <div className="space-y-1.5">
                         <label htmlFor="drawer-password" className="text-xs font-medium font-mono text-muted-foreground uppercase tracking-wider block">
                           Password
@@ -244,14 +246,26 @@ export function SignInDrawer({
                           <Lock className="w-4 h-4 absolute left-3.5 top-3.5 text-muted-foreground" />
                           <input
                             id="drawer-password"
-                            type="password"
+                            type={showPassword ? "text" : "password"}
                             required
                             placeholder="••••••••"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             disabled={status === "submitting"}
-                            className="bg-input border-border focus-visible:ring-primary flex h-11 w-full rounded-xl border pl-10 pr-4 py-2 text-sm outline-none transition-all placeholder:text-muted-foreground text-foreground"
+                            className="bg-input border-border focus-visible:ring-primary flex h-11 w-full rounded-xl border pl-10 pr-10 py-2 text-sm outline-none transition-all placeholder:text-muted-foreground text-foreground"
                           />
+                          <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute right-3.5 top-3.5 text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                            title={showPassword ? "Hide password" : "Show password"}
+                          >
+                            {showPassword ? (
+                              <EyeOff className="w-4 h-4 text-primary" />
+                            ) : (
+                              <Eye className="w-4 h-4" />
+                            )}
+                          </button>
                         </div>
                       </div>
 
@@ -298,18 +312,20 @@ export function SignInDrawer({
                           repeatType: "loop",
                         }}
                       />
-                      <div className="z-1 flex items-center justify-center rounded-[20px] p-1">
-                        <div className="flex items-center justify-center rounded-2xl bg-card p-2">
-                          <div className="flex size-16 items-center justify-center rounded-xl bg-accent text-primary">
-                            <Loader2 className="size-8 animate-spin" />
-                          </div>
-                        </div>
+                      <div className="relative z-10 flex h-20 w-20 items-center justify-center rounded-[20px] bg-card text-primary shadow-inner">
+                        <Loader2 className="h-10 w-10 animate-spin text-primary" />
                       </div>
                     </div>
                   </div>
-                  <p className="text-sm font-semibold font-mono text-muted-foreground">
-                    {activeTab === "signup" ? "Creating your account..." : "Authenticating session..."}
-                  </p>
+
+                  <div className="space-y-2">
+                    <h3 className="text-lg font-bold tracking-tight text-foreground">
+                      {activeTab === "signup" ? "Creating Your Account..." : "Logging In..."}
+                    </h3>
+                    <p className="text-xs text-muted-foreground font-mono">
+                      Securing your session & preparing calendar slots
+                    </p>
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -319,5 +335,3 @@ export function SignInDrawer({
     </Drawer>
   );
 }
-
-export default SignInDrawer;
